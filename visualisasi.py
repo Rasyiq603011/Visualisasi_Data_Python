@@ -116,13 +116,21 @@ p2.vbar(x='Kategori', top='IPK', width=0.4,
 p2.legend.click_policy = "hide"
 show(p2)
 
+# 7. violinplot sebagai modifikasi tampilan
+plt.figure(figsize=(8, 5))
+sns.violinplot(data=df_penyakit, x='Diagnosa', y='Kadar_Gula',
+               order=['Diabetes','Hipertensi', 'Jantungan', 'Normal'])
+plt.title("Sebaran diagnosa penyakit Berdasarkan Kadar gula")
+plt.savefig("violin_diagnosa_kadargula.png")
+plt.close()
+
 # =============================================
 # ============== DATA SET CUSTOM ============== 
 # =============================================
 
 n_siswa_k12 = 200
 data_siswa_k12 = {
-    'ID_Pasien ': [f'Pasien_ {i}' for i in range ( n_siswa_k12 )],
+    'ID_siswa ': [f'siswa_ {i}' for i in range ( n_siswa_k12 )],
     'Usia': np. random . randint (5 , 18, n_siswa_k12 ),
     'Nilai_Rapor': np. random . uniform (0 , 100 , n_siswa_k12 ),
     'Gender': np. random . choice (['Laki - laki' ,'Perempuan'], n_siswa_k12 ),
@@ -159,3 +167,11 @@ sns.heatmap(corr_siswa, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
 plt.title('Korelasi Antar Variabel Siswa K-12')
 plt.savefig('heatmap_Siswa_korelasi.png')
 plt.close()
+
+# 4. Custom Visualisasi durasi vs nilai
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=df_siswa_k12, x='Durasi_Penggunaan_Gawai', y = 'Nilai_Rapor', hue = 'Gender' , size = 'Prestasi_Numerik', sizes =(10,100), palette='Set2')
+plt.title("Korelasi antara Durasi Penggunaan Gawai dengan Nilai Rapor")
+plt.savefig("scatter_siswaK12_Rapor_Durasi_Gawai_Custom.png")
+plt.close()
+
